@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resizable Sidebar Menu</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom style for resizing */
+    .resize-handle {
+      cursor: col-resize;
+      width: 4px;
+      background-color: #4a5568; /* Darker gray color for the handle */
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #sidebar {
+        width: 16rem; /* Sidebar width for tablets and smaller */
+      }
+    }
+
+    @media (max-width: 640px) {
+      #sidebar {
+        width: 12rem; /* Sidebar width for mobile devices */
+        position: sticky;
+        position: fixed;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar and Main Layout -->
+  <div class="flex">
+    <div id="sidebar">
+    <!-- Sidebar -->
+    <div class="relative w-64 h-full bg-slate-800 text-white">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold mb-8 text-blue-300"> EasyRide</h2>
+        <ul>
+          <li class="mb-4"><a  id="dashboardLink" class="hover:bg-gray-700 p-2 block rounded">Dashboard</a></li>
+          <li class="mb-4"><a  id="userDetailsLink" class="hover:bg-gray-700 p-2 block rounded">User-Details</a></li>
+          <li class="mb-4"><a  id="profileLink" class="hover:bg-gray-700 p-2 block rounded">Owner Verification</a></li>
+          <li class="mb-4"><a id="settingsLink" class="hover:bg-gray-700 p-2 block rounded">Booking Details</a></li>
+        </ul>
+
+        <!--   admin profile section -->
+        <div class="flex flex-col h-[420px] justify-end">
+          <img src="image/detailsimg.png" alt="" class="w-[55px] fixed rounded-3xl p-2"> 
+        </div>
+      </div>
+
+      <!-- Resize handle -->
+      <div id="resizeHandle" class="resize-handle"></div>
+    </div>
+  </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+      <div id="content">
+        <div id="dashboard" class="hidden">
+          <h1 class="text-3xl font-bold">Dashboard</h1>
+          <p class="mt-4">This is the dashboard section where you can see an overview of your app.</p>
+          <h3>Shekhar Pawar - Main Admin</h3>
+        </div>
+        <div id="userDetails" class="hidden">
+          <h1 class="text-3xl font-bold">User-Details</h1>
+          <p>This is the section for all the users details(owners and renters).</p>
+          <table class="min-w-full border-collapse border border-gray-300 mt-6" id="usersTable">
+            <thead>
+              <tr>
+                <th class="border border-gray-300 p-2">Name</th>
+                <th class="border border-gray-300 p-2">Email</th>
+                <th class="border  border-gray-300 p-2">Phone No.</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- Rows will be inserted dynamically -->
+            </tbody>
+          </table>
+
+        </div>
+        <div id="profile" class="hidden">
+          <h1 class="text-3xl font-bold">Owner Verification</h1>
+          <p class="mt-4">This is the owner verification section.</p>
+
+          <!-- Table for Owner Verification -->
+          <table class="min-w-full border-collapse border border-gray-300 mt-6" id="ownerTable">
+            <thead>
+              <tr>
+                <th class="border border-gray-300 p-2">Owner Name</th>
+                <th class="border border-gray-300 p-2">Vehicle Name</th>
+                <th class="border  border-gray-300 p-2">Date</th>
+                <th class="border border-gray-300 p-2">Time Slot</th>
+                <th class="border border-gray-300 p-2">Vehicle Images</th>
+                <th class="border border-gray-300 p-2">Pickup Address</th>
+                <th class="border border-gray-300 p-2">Phone No</th>
+                <th class="border border-gray-300 p-2">ID Proof</th>
+                <th class="border border-gray-300 p-2">Status</th>
+                <th class="border border-gray-300 p-2">Action</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Rows will be inserted dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div id="settings" class="hidden">
+          <h1 class="text-3xl font-bold">Settings</h1>
+          <p class="mt-4">This is the settings section where you can adjust your app preferences.</p>
+        </div>
+
+        <!-- Default visible content -->
+        <div class="mt-20" id="welcome">
+          <h1 class="text-3xl font-bold">Welcome <a href="#" class="text-blue-300">!</a></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+    
+</body>
+</html>

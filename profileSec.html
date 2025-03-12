@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex min-h-screen relative">
+
+    <!-- Mobile Menu Button (Shifted to Right) -->
+    <button id="menu-btn" class="p-3 bg-blue-500 text-white fixed top-2 right-2 rounded md:hidden">
+        ☰ 
+    </button>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-white p-5 shadow-md fixed top-0 left-0 min-h-screen hidden md:block">
+        <div class="flex flex-col items-center text-center">
+            <input type="file" id="profile-photo" class="hidden" accept="image/*">
+            <label for="profile-photo" class="cursor-pointer">
+                <div id="profile-preview" class="w-24 h-24 bg-gray-300 rounded-full mb-3 flex items-center justify-center text-gray-500">Upload</div>
+            </label>
+            <h2 class="text-lg font-semibold" id="sidebar-name"></h2>
+            <p class="text-sm text-gray-500" id="sidebar-email"></p>
+        </div>
+        <nav class="mt-5">
+            <a href="#" data-section="account" class="nav-link block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded">Profile Dashboard</a>
+            <a href="#" data-section="transactions" class="nav-link block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded">Transaction History</a>
+            <a href="#" data-section="vehicle-status" class="nav-link block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded">Vehicle Status</a>
+            <a href="#" data-section="documents" class="nav-link block py-2 px-3 text-gray-700 hover:bg-gray-200 rounded">User Document</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-5 ml-0 md:ml-64">
+        <section id="account" class="content-section bg-white p-5 rounded shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">My Account</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700">Full Name</label>
+                <input type="email" class="w-full p-2 border rounded" id="name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Email</label>
+                <input type="email" class="w-full p-2 border rounded" id="email" disabled>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Mobile</label>
+                <input type="text" class="w-full p-2 border rounded"  id="mobile">
+            </div>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded" id="update-btn">Update</button>
+        </section>
+        
+        <section id="transactions" class="content-section bg-white p-5 rounded shadow-md hidden">
+            <h2 class="text-2xl font-semibold">Transaction History</h2>
+            <p class="text-gray-600">Transaction details will be displayed here.</p>
+        </section>
+
+        <section id="documents" class="content-section bg-white p-5 rounded shadow-md hidden">
+            <h2 class="text-2xl font-semibold">User Documents</h2>
+            <label class="block text-gray-700 mt-4">Upload Aadhaar Photo</label>
+            <input type="file" class="w-full p-2 border rounded mb-4">
+            <label class="block text-gray-700">Upload License Photo</label>
+            <input type="file" class="w-full p-2 border rounded mb-4">
+            <button class="bg-green-500 text-white px-4 py-2 rounded">Submit</button>
+        </section>
+        <section id="vehicle-status" class="content-section bg-white p-5 rounded shadow-md hidden">
+            <!-- Container -->
+    <div class="max-w-4xl mx-auto p-6 mt-10 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center mb-4 text-gray-700">Your Vehicles</h2>
+        
+        <!-- Vehicles List -->
+        <div id="vehicleStatus" class="space-y-4">
+            <p class="text-center text-gray-500">Loading vehicles...</p>
+        </div>
+        </section>
+    </main>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch("http://localhost:5000/api/users/me", {
+            method: "GET",
+            credentials: "include", // Ensure session cookies are sent
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch user data");
+        }
+
+        const user = await response.json();
+
+        // Populate user data in profile fields
+        document.getElementById("name").value = user.name;
+        document.getElementById("email").value = user.email;
+        document.getElementById("mobile").value = user.phone;
+
+        // Update Sidebar Info
+        document.getElementById("sidebar-name").textContent = user.name;
+        document.getElementById("sidebar-email").textContent = user.email;
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+    }
+});
+
+// Handle Profile Update
+document.getElementById("update-btn").addEventListener("click", async function () {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("mobile").value;
+
+    try {
+        const response = await fetch("http://localhost:5000/api/users/update", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include", // Send session cookies
+            body: JSON.stringify({ name, phone }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Profile updated successfully!");
+
+            // Update Sidebar Info
+            document.getElementById("sidebar-name").textContent = name;
+            document.getElementById("sidebar-email").textContent = document.getElementById("email").value;
+
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile.");
+    }
+});
+document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            const response = await fetch("/myVehicles", { credentials: "include" }); // Fetch vehicles
+            const vehicles = await response.json();
+
+            const vehicleStatusDiv = document.getElementById("vehicleStatus");
+            vehicleStatusDiv.innerHTML = ""; // Clear existing content
+
+            if (!vehicles || vehicles.length === 0) {
+                vehicleStatusDiv.innerHTML = `<p class="text-center text-gray-500">No vehicles found.</p>`;
+                return;
+            }
+
+            vehicles.forEach(vehicle => {
+                vehicleStatusDiv.innerHTML += `
+                    <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">${vehicle.name}</h3>
+                        <p class="text-sm text-gray-600"><strong>Status:</strong> <span class="font-medium ${vehicle.status === 'Approved' ? 'text-green-600' : vehicle.status === 'Rejected' ? 'text-red-600' : 'text-yellow-500'}">${vehicle.status}</span></p>
+                        ${vehicle.status === "Rejected" ? `<p class="text-sm text-red-500"><strong>Reason:</strong> ${vehicle.rejectionReason}</p>` : ""}
+                    </div>
+                `;
+            });
+        } catch (error) {
+            console.error("Error fetching vehicles:", error);
+            document.getElementById("vehicleStatus").innerHTML = `<p class="text-center text-red-500">Error loading vehicles.</p>`;
+        }
+    });
+        // Toggle Sidebar on Mobile
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('hidden');
+        });
+
+        // Open Selected Section
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Hide all sections
+                document.querySelectorAll('.content-section').forEach(section => section.classList.add('hidden'));
+
+                // Show the selected section
+                document.getElementById(this.getAttribute('data-section')).classList.remove('hidden');
+
+                // Hide sidebar on mobile after selection
+                if (window.innerWidth < 768) {
+                    document.getElementById('sidebar').classList.add('hidden');
+                }
+            });
+        });
+
+        // Profile Picture Preview
+        document.getElementById('profile-photo').addEventListener('change', function (event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                document.getElementById('profile-preview').style.backgroundImage = `url(${reader.result})`;
+                document.getElementById('profile-preview').textContent = '';
+                document.getElementById('profile-preview').classList.add('bg-cover', 'bg-center');
+            };
+            if (event.target.files.length > 0) {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        });
+    </script>
+
+</body>
+</html>

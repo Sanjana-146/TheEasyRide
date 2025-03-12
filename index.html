@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyRide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nav.css">
+  <!-- Updated Font Awesome CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+    crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="explore.css"> -->
+
+</head>
+<style>
+  .hidden{
+    opacity: 0;
+  }
+</style>
+<body style="background-color: #F4F1F9">
+
+  <!--                                THIS THE SIGUP AND SIGIN FROM  -->
+
+  <nav class="z-[9999] fixed top-0 left-0 w-full">
+    <ul class="sidebar">
+      <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960"
+            width="26">
+            <path
+              d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+          </svg></a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#aboutus">About Us</a></li>
+      <li><a href="#rentout">Rent Out</a></li>
+      <li><a href="#explore">Explore Vehicles</a></li>
+      <!-- <li><a href="form.html" id="login-nav">Login</a></li> Added ID for event listener -->
+      <!-- <li class="hideOnMobile"><a href="#" id="logout-btn" style="display: none;">LogOut</a></li> -->
+    </ul>
+    <ul>
+      <li><a href="#" class="logoname text-2xl font-semibold text-blue-700">EasyRide</a></li>
+      <li class="hideOnMobile"><a href="#home">Home</a></li>
+      <li class="hideOnMobile"><a href="#aboutus">About Us</a></li>
+      <li class="hideOnMobile"><a href="#rentout">Rent Out</a></li>
+      <li class="hideOnMobile"><a href="#explore">Explore Vehicles</a></li>
+      <li class="hideOnMobile"><a href="form.html" id="login-nav">Login/SignUp</a></li>
+      <!-- User Icon (Hidden by Default) -->
+      <a href="#" id="user-icon" class="hidden relative">
+        <span class="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full cursor-pointer">👤</span>
+    </a>
+    <div id="user-dropdown" class="hidden absolute right-2 mt-40 w-40 bg-white shadow-lg rounded-lg py-2 z-10">
+      <a href="#" id="my-account" class="block px-4 py-2 text-gray-800 hover:bg-blue-400">My Account</a>
+      <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-blue-400">Logout</a>
+  </div>
+      <!-- <li class="hideOnMobile"><a href="#" id="logout-btn" style="display: none;">LogOut</a></li> -->
+      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26"
+            viewBox="0 96 960 960" width="26">
+            <path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
+          </svg></a></li>
+    </ul>
+  </nav>
+
+  <div class="mt-40" id="home">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="w-full md:w-1/2 px-6 ">
+        <h1 class="text-6xl font-bold mb-6">DISCOVER FREEDOM ON WHEELS.</h1>
+        <p class="text-[rgb(69 80 95)] mb-6 text-6">
+          Make every idle hour count with EasyRide rentals,<br>
+          Turn your downtime into earnings – rent your vehicle today!,<br>
+          Let your wheels work for you whenever you're not driving.
+        </p>
+
+        <a href="#explore"
+          class="bg-[#5cd0f7] text-rgb(69 80 95) px-5 py-3 rounded-lg hover:bg-[rgb(66,88,188)] hover:text-white"
+          id="bookBtnHome">Book Now</a>
+        <a href="#rentout"
+          class="bg-[#5cd0f7] ml-5 text-rgb(69 80 95) px-5 py-3 rounded-lg hover:bg-[rgb(66,88,188)] hover:text-white"
+          id="rentBtnHome">Rent Out</a>
+      </div>
+      <div class="w-full md:w-1/2 flex justify-end">
+        <img src="image/homepage-car-(3).jpg" alt="Yellow Car"
+          class="w-full max-w-sm md:max-w-md rounded-3xl  shadow-[0px_25px_163px_14px_rgba(0,0,0,0.25)]">
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- this page for about us -->
+
+  <div class=" mt-52" id="aboutus">
+
+    <section class="flex items-center justify-center py-12  ">
+
+      <div class="container mx-auto flex items-center justify-between">
+
+        <div class="w-full md:w-1/2 flex justify-start">
+          <img src="/image/aboutus.jpg" alt="Cars"
+            class="w-full  max-w-sm md:max-w-md rounded-3xl shadow-[0px_25px_163px_14px_rgba(0,0,0,0.25)] md:h-[400px] lg:h-[500px]">
+        </div>
+        <!-- Content on the right -->
+        <div class="w-full md:w-1/2 px-6 mt-8 md:mt-0 text-left">
+          <h1 class="text-4xl font-bold mb-6 ">About Us</h1>
+          <p text-[rgb(69 80 95)]>
+            Make every idle hour count with EasyRide Rentals – turn your downtime into earnings by renting out your
+            vehicle today! Let your wheels work for you whenever you're not driving, and take advantage of our
+            affordable rates for renters. Plus, enjoy exclusive discounts and flexible rental options, making it easier
+            than ever to maximize your vehicle's potential and put money in your pocket.</p>
+
+          <button id="more-info-btn"
+            class="mt-6 bg-[#5cd0f7] text-rgb(69 80 95) px-5 py-3 rounded-lg hover:bg-[rgb(66,88,188)] hover:text-white">More
+            Info</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- //////   rent out page -->
+
+  <div class=" h-[800px] bg-[#f4f1f4]" id="rentout">
+    <div class="max-w-6xl mx-auto py-10 px-4 mt-52">
+      <h1 class="text-xl lg:text-5xl font-bold text-center mb-10">How to Rent Out Your Vehicle on <a
+          class=" text-[#5cd0f7]">EasyRide</a></h1>
+
+
+      <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 lg:space-x-6 mt-40">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center">
+          <img src="image/logo_transparent.png" alt="step 1"
+            class="w-20 h-20 lg:w-40 lg:h-40 rounded-3xl  shadow-[0px_25px_163px_14px_rgba(0,0,0,0.35)]">
+          <p class="mt-4 text-center font-semibold text-sm lg:text-base">Log onto <a href="from.html"
+              class="text-blue-500 underline">EasyRide</a></p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center">
+          <img src="image/time and date.png" alt="Step 2"
+            class="w-20 h-20 lg:w-40 lg:h-40 rounded-3xl shadow-[0px_25px_163px_14px_rgba(0,0,0,0.35)]">
+          <p class="mt-4 text-center font-semibold text-sm lg:text-base">Select your time slot</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center">
+          <img src="image/detailsimg.png" alt="Step 3"
+            class="w-20 h-20 lg:w-40 lg:h-40 rounded-3xl shadow-[0px_25px_163px_14px_rgba(0,0,0,0.35)]">
+          <p class="mt-4 text-center font-semibold text-sm lg:text-base">Upload Your Details</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center ">
+          <img src="image/bookingimg.png" alt="Step 4"
+            class="w-20 h-20 lg:w-40 lg:h-40   rounded-3xl shadow-[0px_25px_163px_14px_rgba(0,0,0,0.35)]">
+          <p class="mt-4 text-center font-semibold text-sm lg:text-base">Accept Booking and <br>Get Payment</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-28">
+        <button id="upload-details-btn"
+          class="    mt-6 bg-[#5cd0f7] text-rgb(69 80 95) px-5 py-3 rounded-lg hover:bg-[rgb(66,88,188)] hover:text-white shadow-[0px_25px_163px_14px_rgba(0,0,0,0.35)]">Upload
+          Details !</button>
+      </div>
+    </div>
+
+    <!-- explore page  -->
+    <!-- this page for the   explore vehicle  -->
+
+
+
+    <div class="w-full min-h-[800px] bg-[#f4f1f9] mt-48" id="explore">
+
+      <div class="mt-28 text-center">
+        <h1 class="text-xl lg:text-5xl font-bold ">Explore Your Vehicle on
+          <a class=" text-[#5cd0f7]">EasyRide</a>
+        </h1>
+      </div>
+
+
+      <div class="flex items-center justify-center py-4 mt-20">
+        <div
+          class="bg-slate-50 rounded-xl border border-[#5cd0f7] shadow-xl flex flex-wrap md:flex-nowrap items-center space-y-4 md:space-y-0 md:space-x-4 px-6 py-4">
+
+          <!-- Start Date -->
+          <div class="flex items-center space-x-2 w-full md:w-auto">
+            <label for="start-date" class="text-gray-600">Start Date</label>
+            <input type="date" id="start-date"
+              class="border rounded-lg px-2 py-1 w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Start Time -->
+          <div class="flex items-center space-x-2 w-full md:w-auto">
+            <label for="start-time" class="text-gray-600">Start Time</label>
+            <input type="time" id="start-time"
+              class="border rounded-lg px-2 py-1 w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- End Time -->
+          <div class="flex items-center space-x-2 w-full md:w-auto">
+            <label for="end-time" class="text-gray-600">End Time</label>
+            <input type="time" id="end-time"
+              class="border rounded-lg px-2 py-1 w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+
+          <!-- Vehicle Type -->
+          <div class="flex items-center space-x-2 w-full md:w-auto">
+            <label for="vehicle-type" class="text-gray-600">Vehicle Type</label>
+            <select id="vehicle-type"
+              class="border rounded-lg px-4 py-1 w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="All">All</option>
+              <option value="car">Car</option>
+              <option value="bike">Bike</option>
+              <option value="scooty">Scooty</option>
+            </select>
+          </div>
+
+          <!-- Search Button -->
+          <div class="w-full md:w-auto">
+            <button id="ride-now-btn"
+              class="w-full md:w-auto bg-[#5cd0f7] text-white px-6 py-2 rounded-lg hover:bg-[rgb(66,88,188)] hover:text-white">
+              Ride Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Cards Container -->
+      <div id="vehicleCards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6">
+        <!-- Cards will be dynamically generated here -->
+      </div>
+    </div>
+
+    <!-- Footer section -->
+    <div class="bg-gray-900 text-white">
+      <footer class="bg-gray-900 py-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+
+          <!-- Contact Section -->
+          <div class="space-y-4">
+            <p class="font-semibold text-lg">💬 24*7 customer support</p>
+            <p><i class="fa-solid fa-phone" style="color: #09e1c8;"></i> +91 9301163448</p>
+            <p>📧 <a href="EasyRide@gmail.com" class="hover:underline">EasyRide@gmail.com</a></p>
+          </div>
+
+          <!-- Solutions Section -->
+          <div class="space-y-2">
+            <h3 class="font-semibold  text-lg text-[#5cd0f7]">Solutions</h3>
+            <ul class="space-y-1">
+              <li><a href="#" class="hover:underline">Vehicle Listings</a></li>
+              <li><a href="#" class="hover:underline">Rent a Car,Bike,Scooter</a></li>
+
+              <li><a href="#" class="hover:underline">How to Rent Out Your Vehicle</a></li>
+              <li><a href="#" class="hover:underline">Customer Reviews</a></li>
+              <li><a href="#" class="hover:underline">Partner with Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Company Section -->
+          <div class="space-y-2">
+            <h3 class="font-semibold  text-lg text-[#5cd0f7]">Company</h3>
+            <ul class="space-y-1">
+              <li>About Us</li>
+              <li>Careers</li>
+              <li>Customer Stories</li>
+              <li>Contact</li>
+              <li>Legal</li>
+
+            </ul>
+          </div>
+
+          <!-- Resources Section -->
+
+
+          <!-- Social Media Icons -->
+          <div class="flex justify-end space-x-4 mt-8 px-6">
+            <a href="#" class="text-white hover:text-teal-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white hover:text-teal-400"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-white hover:text-teal-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white hover:text-teal-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white hover:text-teal-400"><i class="fab fa-youtube"></i></a>
+          </div>
+      </footer>
+
+    </div>
+    <div class="fixed bottom-5 right-5 bg-blue-500 text-white p-4 rounded-full shadow-lg cursor-pointer text-2xl" onclick="toggleChat()">
+      💬
+     </div>
+     
+     
+     <div id="chat-container" class="fixed bottom-16 right-5 w-80  bg-white rounded-lg shadow-lg hidden flex-col">
+       <div class="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg">
+           <span>Chatbot</span>
+           <button class="text-xl" onclick="toggleChat()">✖</button>
+       </div>
+       <div id="chat-box" class="p-3 flex-1 overflow-y-auto max-h-64 bg-gray-50">
+           <div class="bg-blue-100 text-blue-900 p-2 rounded-md mb-2  w-fit">Hello! How can I assist you?</div>
+       </div>
+       <div class="p-3 bg-gray-200 flex">
+           <input id="user-input" type="text" placeholder="Type your message..." 
+                  class="flex-1 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                  onkeypress="handleKeyPress(event)">
+           <button onclick="sendMessage()" class="bg-blue-500 text-white px-3 py-2 rounded-md ml-2">Send</button> 
+       </div>
+     </div>
+    <script src="form.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="explore.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
